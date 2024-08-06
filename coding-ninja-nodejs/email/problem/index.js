@@ -14,7 +14,7 @@ const Solution = () => {
   })
 };
 
-async function sendMail(input) {
+ function sendMail(input) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -29,7 +29,7 @@ async function sendMail(input) {
     text: "The world has enough coders; be a coding ninja!"
   };
   try {
-    const result = await transporter.sendMail(mailoptions);
+    const result = transporter.sendMail(mailoptions);
     console.log("Email sent sucessfully");
 
   } catch (err) {
