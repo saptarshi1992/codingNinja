@@ -1,14 +1,23 @@
-// Please don't change the pre-written code
-// Import the necessary modules here
-// Write your code here
+// Please don't change the pre-written code.
 
-const express = require('express');
-const server = express();
-server.get("/", (req, res) => {
-    res.send("Be a Coding Ninja.");
+const express = require("express");
+const app = express();
+
+const logRequest = (req, res, next) => {
+  // Write your code here
+  console.log(req.method);
+    console.log(req.path);
+    next();
+
+};
+
+// This route should only be accessible after passing through the 'logRequest' middleware. 
+// Make necessary changes in the route below.
+app.get("/", logRequest,(req, res) => {
+  res.send("Coding Ninjas!");
 });
-// server.listen(5000, () => {
-//     console.log("server is connecting with port 5000");
-// })
-
-module.exports = { server };
+app.listen(8100, () => {
+    console.log("server is listening at 5000");
+  });
+  
+module.exports = app;
