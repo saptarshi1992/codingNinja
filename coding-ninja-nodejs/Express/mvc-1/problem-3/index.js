@@ -1,0 +1,15 @@
+import express from "express";
+import path from "path";
+import ProductController from "./src/controllers/product.controller.js";
+const productController = new ProductController();
+const app = express();
+
+app.set("view engine", "ejs");
+app.set("views", path.resolve("src", "views"));
+app.get("/", productController.getProducts);
+
+export default app;
+
+app.listen(3000, () => {
+    console.log("server is listening on 3000");
+  });

@@ -5,7 +5,7 @@ export default class ProductController {
   getProducts = (req, res) => {
     //  Write your code here
     const product = new ProductModel();
-    res.get('/', product.fetchProducts);
-
+    res.send(product.fetchProducts());
   };
 }
+
