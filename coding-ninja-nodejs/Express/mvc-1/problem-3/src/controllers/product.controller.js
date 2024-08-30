@@ -6,6 +6,7 @@ export default class ProductController {
 
   getProducts = (req, res) => {
     const product = new ProductModel();
-    res.render("products", { products: product.fetchProducts() });
+   // console.log(product.fetchProducts());
+    res.render("product", { products: product.fetchProducts() });
   };
 }

@@ -1,12 +1,14 @@
 const express = require('express');
+const ejslayout = require('express-ejs-layouts')
 const path = require('path');
 const server = express();
 //set the view engine //
 
 server.set("view engine", "ejs");
 server.set("views", path.join(path.resolve(), "src", "views"));
+server.use(ejslayout);
 
-const productController = require('./src/controllers/products.controller');
+const productController = require('./src/controllers/products.controller.js');
 const products = new productController();
 server.get('/', products.getProducts);
 const port = 5000;

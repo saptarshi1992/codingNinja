@@ -9,7 +9,3 @@ app.set("views", path.resolve("src", "views"));
 app.get("/", productController.getProducts);
 
 export default app;
-
-app.listen(3000, () => {
-    console.log("server is listening on 3000");
-  });
