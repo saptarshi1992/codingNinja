@@ -11,6 +11,7 @@ server.use(ejslayout);
 const productController = require('./src/controllers/products.controller.js');
 const products = new productController();
 server.get('/', products.getProducts);
+server.get('/new', products.getAddForm);
 const port = 5000;
 server.listen(port, () => {
     console.log(`server is connecting in ${port}`)

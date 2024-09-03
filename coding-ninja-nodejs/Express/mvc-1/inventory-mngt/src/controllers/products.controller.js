@@ -5,7 +5,10 @@ class productController {
         let products = ProductModel.get();
         console.log(products);
         res.render("products", { products: products });
-       // return res.sendFile(path.join(path.resolve(), "src", "views", "products.html"));
+        // return res.sendFile(path.join(path.resolve(), "src", "views", "products.html"));
+    }
+    getAddForm(req, res) {
+        res.render("add-product");
     }
 }
 module.exports = productController;
