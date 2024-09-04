@@ -2,13 +2,17 @@
 // Import the necessary modules here
 import { blogs } from "../models/blog.model.js";
 
-export const renderBlogs = (req,res) => {
+export const renderBlogs = (req, res) => {
   // Write your code here
+  //console.log(blogs);
+  res.render("blogs", { blogs: blogs });
+
+};
+export const renderBlogForm = (req, res) => {
   res.render("addBlogForm", { blogs: blogs });
 };
-export const renderBlogForm = () => {
+export const addBlog = (req, res) => {
   // Write your code here
-};
-export const addBlog = () => {
-  // Write your code here
+  blogs.push(req.body);
+  res.render("blogs", { blogs: blogs });
 };

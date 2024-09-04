@@ -11,6 +11,7 @@ class productController {
         res.render("add-product");
     }
     addData(req, res) {
+        const { name, desc, price, imageurl } = req.body;
         console.log(req.body);
         ProductModel.addData(req.body);
         let products = ProductModel.get();

@@ -1,1 +1,14 @@
-// Write your code here
+
+<ul>
+    <% blogs.forEach(blog=>{ %>
+        <li>
+            <%= blog.title %>
+        </li>
+        <li>
+            <%= blog.description %>
+        </li>
+        <li>
+            <img src="<%= blog.img %>">
+        </li>
+        <%})%>
+</ul>
