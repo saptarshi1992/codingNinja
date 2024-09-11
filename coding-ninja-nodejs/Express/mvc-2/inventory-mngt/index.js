@@ -1,6 +1,7 @@
 const express = require('express');
 const ejslayout = require('express-ejs-layouts')
 const path = require('path');
+const validator = require('./src/middleware/validation.middleware.js');
 const server = express();
 //set the view engine //
 
@@ -13,7 +14,7 @@ const productController = require('./src/controllers/products.controller.js');
 const products = new productController();
 server.get('/', products.getProducts);
 server.get('/new', products.getAddForm);
-server.post('/', products.addData);
+server.post('/', validator, products.addData);
 const port = 5000;
 server.listen(port, () => {
     console.log(`server is connecting in ${port}`)

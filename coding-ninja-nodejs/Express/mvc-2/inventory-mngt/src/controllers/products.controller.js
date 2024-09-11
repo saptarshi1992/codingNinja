@@ -12,22 +12,7 @@ class productController {
     }
     addData(req, res) {
         //validate data;
-        const { name, desc, price, imageurl } = req.body;
-        let errors = [];
-        if (!name || name.trim() == '') {
-            errors.push("Check your name before enter!");
-        }
-        if (!price || parseFloat(price) < 1) {
-            errors.push("Price is not define")
-        }
-        try {
-            const validUrl = new URL(imageurl);
-        } catch (err) {
-            errors.push('URL is invalid');
-        }
-        if (errors.length > 0) {
-            return res.render("add-product", { errors: errors });
-        }
+         
         console.log(req.body);
         ProductModel.addData(req.body);
         let products = ProductModel.get();
