@@ -1,3 +1,4 @@
+<h1 class="mt-5 mb-4">Products</h1>
 <table class="table table-dark">
     <thead>
         <tr>
@@ -9,9 +10,9 @@
         </tr>
     </thead>
     <tbody>
-        <% products.forEach(product=>{ %>
+        <% products.forEach(product=> { %>
             <tr>
-                <th>
+                <th scope="row">
                     <%= product.id %>
                 </th>
                 <td>
@@ -20,13 +21,13 @@
                 <td>
                     <%= product.desc %>
                 </td>
-                <td scope="col">
-                    <%= product.price %>
+                <td><%= product.price %>
                 </td>
                 <td>
-                    <img src=" <%= product.imageUrl %>" />
+                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="max-width: 100px;">
                 </td>
             </tr>
-            <%})%>
+            <% }) %>
     </tbody>
 </table>
+</div>

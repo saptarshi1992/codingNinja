@@ -1,21 +1,33 @@
-const express = require('express');
-const ejslayout = require('express-ejs-layouts')
-const path = require('path');
-const validator = require('./src/middleware/validation.middleware.js');
-const server = express();
-//set the view engine //
+import express from 'express';
+import ProductsController from './src/controllers/product.controller.js';
+import ejsLayouts from 'express-ejs-layouts';
+import path from 'path';
+import validationMiddleware from './src/middlewares/validation.middleware.js';
 
-server.set("view engine", "ejs");
-server.set("views", path.join(path.resolve(), "src", "views"));
-server.use(ejslayout);
-server.use(express.urlencoded({ extended: true }));
+const app = express();
+const productsController =
+  new ProductsController();
 
-const productController = require('./src/controllers/products.controller.js');
-const products = new productController();
-server.get('/', products.getProducts);
-server.get('/new', products.getAddForm);
-server.post('/', validator, products.addData);
-const port = 5000;
-server.listen(port, () => {
-    console.log(`server is connecting in ${port}`)
-})
+app.use(ejsLayouts);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.set(
+  'views',
+  path.join(path.resolve(), 'src', 'views')
+);
+
+app.get('/', productsController.getProducts);
+app.get(
+  '/add-product',
+  productsController.getAddProduct
+);
+app.post(
+  '/',
+  validationMiddleware,
+  productsController.postAddProduct
+);
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
