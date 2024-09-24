@@ -22,6 +22,7 @@ app.get(
   '/add-product',
   productsController.getAddProduct
 );
+app.get('/update-product', productsController.UpdateProduct);
 app.post(
   '/',
   validationMiddleware,

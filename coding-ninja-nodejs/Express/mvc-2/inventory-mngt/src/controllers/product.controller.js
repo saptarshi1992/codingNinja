@@ -17,6 +17,18 @@ class ProductsController {
     var products = ProductModel.getAll();
     res.render('index', { products });
   }
+
+  UpdateProduct(req, res, next) {
+    const { id } = req.body;
+    const productData = ProductModel.getById(id);
+    if (productData) {
+      res.render('update-product', { products: productData, errorMessage: null });
+    }
+    else {
+      res.status(401).send("Product Id not present");
+    }
+
+  }
 }
 
 export default ProductsController;
