@@ -22,12 +22,14 @@ app.get(
   '/add-product',
   productsController.getAddProduct
 );
-app.get('/update-product', productsController.UpdateProduct);
+app.get('/update-product/:id', productsController.UpdateProduct);
+//app.get('/update-product-data', productsController.UpdateProductData);
 app.post(
   '/',
   validationMiddleware,
   productsController.postAddProduct
 );
+app.post('/update-product', validationMiddleware, productsController.UpdateProductData);
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
