@@ -11,6 +11,7 @@ const productsController =
 app.use(ejsLayouts);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set(
   'views',
@@ -30,7 +31,7 @@ app.post(
   productsController.postAddProduct
 );
 app.post('/update-product', validationMiddleware, productsController.UpdateProductData);
-
+app.post('/delete-product/:id', productsController.DeleteProduct);
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });

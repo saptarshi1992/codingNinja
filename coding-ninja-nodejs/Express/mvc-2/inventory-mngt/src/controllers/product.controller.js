@@ -19,7 +19,7 @@ class ProductsController {
   }
 
   UpdateProduct(req, res, next) {
-    const id  = req.params.id;
+    const id = req.params.id;
     const productData = ProductModel.getById(id);
     if (productData) {
       res.render('update-product', { products: productData, errorMessage: null });
@@ -27,12 +27,25 @@ class ProductsController {
     else {
       res.status(401).send("Product Id not present");
     }
-    
+
   }
-  UpdateProductData(req, res){
+  UpdateProductData(req, res) {
     ProductModel.getUpdate(req.body);
     var products = ProductModel.getAll();
     res.render('index', { products });
+  }
+  DeleteProduct(req, res) {
+    const id = req.params.id;
+    const productData = ProductModel.getById(id);
+    if (productData) {
+      ProductModel.deleteItem(id);
+      var products = ProductModel.getAll();
+      res.render('index', { products });
+
+    } else {
+      res.status(401).send("Product Id not present");
+    }
+
   }
 }
 

@@ -11,7 +11,14 @@ export const users = [
 ];
 
 export const updateUsers = (user) => {
-  const index = users.findIndex((u) => u.id == user.id);
-  user[index] = user;
-  
+  const { id } = user;
+  const userToUpdateIndex = users.findIndex((user) => {
+    return user.id === parseInt(id);
+  });
+  if (userToUpdateIndex > -1) {
+    users.splice(userToUpdateIndex, 1, user);
+    return users[userToUpdateIndex];
+  } else {
+    return false;
+  }
 };
