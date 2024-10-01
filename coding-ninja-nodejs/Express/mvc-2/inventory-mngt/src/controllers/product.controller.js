@@ -37,8 +37,9 @@ class ProductsController {
   DeleteProduct(req, res) {
     const id = req.params.id;
     const productData = ProductModel.getById(id);
+    console.log(productData);
     if (productData) {
-      ProductModel.deleteItem(id);
+      ProductModel.delete(id);
       var products = ProductModel.getAll();
       res.render('index', { products });
 
